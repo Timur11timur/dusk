@@ -7,3 +7,6 @@ Create test
 
 Execute test
     php artisan dusk tests/Browser/AuthTest.php
+
+if '--headless' do not comment out in DuskTestCase
+    will be no displaying

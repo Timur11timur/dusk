@@ -28,7 +28,6 @@ class AuthTest extends DuskTestCase
         });
     }
 
-
     /** @test */
     public function a_user_can_login_correctly()
     {
