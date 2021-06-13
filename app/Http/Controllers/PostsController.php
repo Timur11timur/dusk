@@ -9,8 +9,15 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with(['user'])->get();
 
-        return view('welcome')->with(compact('posts'));
+        return view('pages.posts.all')->with(compact('posts'));
+    }
+
+    public function show(Post $post)
+    {
+        $post = $post->load(['user']);
+
+        return view('pages.posts.one')->with(compact('post'));
     }
 }

@@ -21,6 +21,7 @@ class AuthTest extends DuskTestCase
                 ->type('password', 'password')
                 ->type('password_confirmation', 'password')
                 ->click('button[type="submit"]')
+                ->clickLink('Dashboard')
                 ->assertSee('You\'re logged in!')
                 ->click('button')
                 ->clickLink('Log out')
@@ -32,16 +33,17 @@ class AuthTest extends DuskTestCase
     public function a_user_can_login_correctly()
     {
          User::factory()->create([
-            'email' => 'user@user.com',
+            'email' => 'user@test.com',
             'password' => bcrypt('password')
         ]);
 
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
                 ->clickLink('Log in')
-                ->type('email', 'user@user.com')
+                ->type('email', 'user@test.com')
                 ->type('password', 'password')
                 ->click('button[type="submit"]')
+                ->clickLink('Dashboard')
                 ->assertSee('You\'re logged in!');
         });
     }

@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostsController::class, 'index']);
 
+Route::prefix('posts')->name('posts.')->group(function () {
+    Route::get('/{post}', [PostsController::class, 'show'])->name('show');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
