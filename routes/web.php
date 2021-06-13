@@ -18,6 +18,11 @@ Route::get('/', [PostsController::class, 'index']);
 
 Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/{post}', [PostsController::class, 'show'])->name('show');
+    Route::middleware('auth')
+        ->group(function () {
+            Route::get('/create', [PostsController::class, 'create'])->name('create');
+            Route::post('/', [PostsController::class, 'store'])->name('store');
+    });
 });
 
 Route::get('/dashboard', function () {

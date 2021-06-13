@@ -20,4 +20,24 @@ class PostsController extends Controller
 
         return view('pages.posts.one')->with(compact('post'));
     }
+
+    public function create()
+    {
+        return view('pages.posts.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'text' => 'nullable|string',
+        ]);
+
+        Post::create([
+            'title' => $request->validated()['title'],
+            'text' => $request->validated()['text'] ?? null,
+        ]);
+
+        return view('pages.posts.all')->withMessage('Post successfully created');
+    }
 }

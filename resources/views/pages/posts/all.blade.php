@@ -12,6 +12,9 @@
                         </li>
                     @endforeach
                 </ul>
+                @auth
+                    <a href="{{ route('posts.create') }}">Create Post</a>
+                @endauth
             </div>
         </div>
     </div>

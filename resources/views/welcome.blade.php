@@ -21,6 +21,13 @@
         </style>
     </head>
     <body class="antialiased">
+        @if(session()->has('message'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <i class="fa fa-check-circle me-2 fs-4"></i>
+                {{ session('message') }}
+                <i class="fa fa-times fs-5 btn-close pointer" data-bs-dismiss="alert" aria-label="Close"></i>
+            </div>
+        @endif
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
